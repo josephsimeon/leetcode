@@ -1,11 +1,11 @@
 #[derive(PartialEq, Eq, Clone, Debug)]
-struct ListNode {
-    val: i32,
-    next: Option<Box<ListNode>>,
+pub struct ListNode {
+    pub val: i32,
+    pub next: Option<Box<ListNode>>,
 }
 
 impl ListNode {
-    fn new(val: i32) -> Self {
+    pub fn new(val: i32) -> Self {
         ListNode {
             next: None,
             val,
@@ -16,7 +16,7 @@ impl ListNode {
 const CARRY_THRESHOLD: i32 = 10;
 const CARRY_VALUE: i32 = 1;
 
-fn add_two_numbers(l1: Option<Box<ListNode>>, l2: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
+pub fn add_two_numbers(l1: Option<Box<ListNode>>, l2: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
     let mut vector: Vec<i32> = Vec::new();
 
     let mut head1 = l1;
@@ -79,20 +79,3 @@ fn add_two_numbers(l1: Option<Box<ListNode>>, l2: Option<Box<ListNode>>) -> Opti
     Some(Box::new(result))
 }
 
-fn main() {
-    let mut l1 = ListNode::new(2);
-    let mut l2 = ListNode::new(4);
-    let l3 = ListNode::new(3);
-
-    l2.next = Some(Box::new(l3));
-    l1.next = Some(Box::new(l2));
-
-    let mut l4 = ListNode::new(5);
-    let mut l5 = ListNode::new(6);
-    let l6 = ListNode::new(4);
-
-    l5.next = Some(Box::new(l6));
-    l4.next = Some(Box::new(l5));
-
-    println!("{:?}", add_two_numbers(Some(Box::new(l1)), Some(Box::new(l4))));
-}
