@@ -5,7 +5,10 @@ fn reverse(x: i32) -> i32 {
 
     let s_rev = x.abs().to_string().chars().rev().collect::<String>();
 
-    s_rev.parse::<i32>().unwrap() * sign
+    match s_rev.parse::<i32>() {
+        Ok(num) => num * sign,
+        Err(_) => 0,
+    }
 }
 
 #[cfg(test)]
@@ -30,5 +33,10 @@ mod test {
     #[test]
     fn test_0() {
         assert_eq!(reverse(0), 0);
+    }
+
+    #[test]
+    fn test_1534236469() {
+        assert_eq!(reverse(1534236469), 0);
     }
 }
