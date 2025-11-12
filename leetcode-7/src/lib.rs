@@ -1,4 +1,6 @@
 fn reverse(x: i32) -> i32 {
+    if x == 0 { return 0 };
+
     let sign = x.abs() / x;
 
     let s_rev = x.abs().to_string().chars().rev().collect::<String>();
@@ -23,5 +25,10 @@ mod test {
     #[test]
     fn test_120() {
         assert_eq!(reverse(120), 21);
+    }
+
+    #[test]
+    fn test_0() {
+        assert_eq!(reverse(0), 0);
     }
 }
