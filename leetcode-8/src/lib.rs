@@ -1,14 +1,13 @@
-pub fn add(left: u64, right: u64) -> u64 {
-    left + right
+fn my_atoi(s: String) -> i32 {
+    s.parse::<i32>().unwrap()
 }
 
 #[cfg(test)]
-mod tests {
+mod test {
     use super::*;
 
     #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
+    fn test_42() {
+        assert_eq!(my_atoi("42".to_string()), 42);
     }
 }
