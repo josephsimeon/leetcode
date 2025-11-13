@@ -26,6 +26,7 @@ fn my_atoi(s: String) -> i32 {
         Ok(num) => num,
         Err(e) => {
             match e.kind() {
+                IntErrorKind::PosOverflow => i32::MAX,
                 IntErrorKind::NegOverflow => i32::MIN,
                 IntErrorKind::Empty => 0,
                 _ => 0,
@@ -61,5 +62,10 @@ mod test {
     #[test]
     fn test_neg91283472332() {
         assert_eq!(my_atoi("-91283472332".to_string()), i32::MIN);
+    }
+
+    #[test]
+    fn test_21474836460() {
+        assert_eq!(my_atoi("21474836460".to_string(), i32::MAX);
     }
 }
