@@ -1,3 +1,5 @@
+use std::num::IntErrorKind;
+
 fn my_atoi(s: String) -> i32 {
     let s = s.trim_start();
     let mut end = s.len();
@@ -20,7 +22,16 @@ fn my_atoi(s: String) -> i32 {
     let s = &s[..end];
     println!("{s}");
 
-    s.parse::<i32>().unwrap()
+    match s.parse::<i32>() {
+        Ok(num) => num,
+        Err(e) => {
+            match e.kind() {
+                IntErrorKind::NegOverflow => i32::MIN,
+                IntErrorKind::Empty => 0,
+                _ => 0,
+            }
+        },
+    }
 }
 
 #[cfg(test)]
@@ -40,5 +51,15 @@ mod test {
     #[test]
     fn test_1337c0d3() {
         assert_eq!(my_atoi("1337cd0d3".to_string()), 1337);
+    }
+
+    #[test]
+    fn test_words_and_987() {
+        assert_eq!(my_atoi("words and 987".to_string()), 0);
+    }
+
+    #[test]
+    fn test_neg91283472332() {
+        assert_eq!(my_atoi("-91283472332".to_string()), i32::MIN);
     }
 }
