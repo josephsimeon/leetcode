@@ -66,6 +66,6 @@ mod test {
 
     #[test]
     fn test_21474836460() {
-        assert_eq!(my_atoi("21474836460".to_string(), i32::MAX);
+        assert_eq!(my_atoi("21474836460".to_string()), i32::MAX);
     }
 }
