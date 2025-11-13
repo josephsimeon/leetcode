@@ -5,7 +5,7 @@ fn max_area(height: Vec<i32>) -> i32 {
 
     for (i, x) in height.iter().enumerate() {
         for (j, y) in height.iter().enumerate() {
-            if i != j {
+            if i < j {
                 let size = min(x, y) * (i as i32 - j as i32).abs();
                 if size > area { area = size };
             }
